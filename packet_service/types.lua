@@ -1721,7 +1721,17 @@ types.incoming[0x063] = multiple({
     lookups = {
 
         [0x02] = {
-            flags           = {0x04, data(5)}, -- The 3rd bit of the last byte is the flag that indicates whether or not you are xp capped (blue levels)
+            limit_points    = {0x04, uint16},
+            merit_points    = {0x06, uint8},
+            unknown_1       = {0x07, boolbit(uint8), offset=7}, -- Merit mode switch? Needs confirmation.
+            unknown_2       = {0x07, boolbit(uint8), offset=6}, -- Blue level (capped)? Needs confirmation.
+            unknown_3       = {0x07, boolbit(uint8), offset=5}, -- Merits unlocked? Needs confirmation.
+            unknown_4       = {0x07, boolbit(uint8), offset=4},
+            unknown_5       = {0x07, boolbit(uint8), offset=3},
+            unknown_6       = {0x07, boolbit(uint8), offset=2},
+            unknown_7       = {0x07, boolbit(uint8), offset=1},
+            unknown_8       = {0x07, boolbit(uint8), offset=0},
+            merit_points_max= {0x08, uint8},
         },
 
         [0x03] = {

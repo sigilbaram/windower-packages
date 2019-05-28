@@ -29,6 +29,18 @@ local data = server.new(structs.struct({
     item_level          = {structs.int32},
     exp                 = {structs.int32},
     exp_required        = {structs.int32},
+    merit_points        = {structs.int32},
+    merit_points_max    = {structs.int32},
+    merit_unknown_1     = {structs.bool},
+    merit_unknown_2     = {structs.bool},
+    merit_unknown_3     = {structs.bool},
+    merit_unknown_4     = {structs.bool},
+    merit_unknown_5     = {structs.bool},
+    merit_unknown_6     = {structs.bool},
+    merit_unknown_7     = {structs.bool},
+    merit_unknown_8     = {structs.bool},
+    merit_flags         = {structs.string(0x1)},
+    limit_points        = {structs.int32},
     movement_speed      = {structs.double},
     animation_speed     = {structs.double},
     title_id            = {structs.int32},
@@ -114,6 +126,18 @@ packets.incoming:register_init({
         end
     end,
 
+    [{0x02D}] = function(p)
+        if p.message_id == 371 or p.message_id == 372 then
+            data.limit_points = data.limit_points + p.param_1
+            while(data.limit_points >= 10000) do
+                data.limit_points = data.limit_points - 10000
+            end
+        end
+        if p.message_id == 372 then
+            data.merit_points = data.merit_points + p.param_2
+        end
+    end,
+
     [{0x037}] = function(p)
         data.id = p.player_id
         data.hp_percent = p.hp_percent
@@ -153,6 +177,20 @@ packets.incoming:register_init({
             skill.rank_id = s.rank_id
             skill.capped = s.capped
         end
+    end,
+    
+    [{0x063,0x02}] = function(p)
+        data.limit_points = p.limit_points
+        data.merit_points = p.merit_points
+        data.merit_points_max = p.merit_points_max
+        data.merit_unknown_1 = p.unknown_1
+        data.merit_unknown_2 = p.unknown_2
+        data.merit_unknown_3 = p.unknown_3
+        data.merit_unknown_4 = p.unknown_4
+        data.merit_unknown_5 = p.unknown_5
+        data.merit_unknown_6 = p.unknown_6
+        data.merit_unknown_7 = p.unknown_7
+        data.merit_unknown_8 = p.unknown_8
     end,
 
     [{0x0DF}] = function(p)

@@ -1,0 +1,9 @@
+<package>
+    <name>expbar</name>
+    <version>1.0</version>
+    <type>addon</type>
+    <dependencies>
+        <dependency>player</dependency>
+        <dependency>client_data</dependency>
+    </dependencies>
+</package>
