@@ -39,7 +39,6 @@ local data = server.new(structs.struct({
     merit_unknown_6     = {structs.bool},
     merit_unknown_7     = {structs.bool},
     merit_unknown_8     = {structs.bool},
-    merit_flags         = {structs.string(0x1)},
     limit_points        = {structs.int32},
     movement_speed      = {structs.double},
     animation_speed     = {structs.double},
@@ -129,12 +128,12 @@ packets.incoming:register_init({
     [{0x02D}] = function(p)
         if p.message_id == 371 or p.message_id == 372 then
             data.limit_points = data.limit_points + p.param_1
-            while(data.limit_points >= 10000) do
+            while data.limit_points >= 10000 do
                 data.limit_points = data.limit_points - 10000
             end
         end
-        if p.message_id == 372 then
-            data.merit_points = data.merit_points + p.param_2
+        if p.message_id == 50 then
+            data.merit_points = p.param_1
         end
     end,
 

@@ -12,7 +12,7 @@ local window_state = {
     y = 1,
     width = 750,
     height = 16,
-    color = ui.color.rgb(0,0,0,0)
+    color = ui.color.rgb(0, 0, 0, 0),
 }
 
 ui.display(function()
@@ -36,7 +36,7 @@ ui.display(function()
         
         percent = current / required
 
-        ui.location(0,0)
+        ui.location(0, 0)
         if do_merits then
             ui.text(string.format('[%d/%d Merits]{bold color:%s stroke:"%s"}',
                 player.merit_points,
@@ -53,7 +53,7 @@ ui.display(function()
         ui.size(500, 2)
         ui.progress(percent, {color = ui_color})
 
-        ui.location(605,0)
+        ui.location(605, 0)
         ui.text(string.format('[%s/%s(%s%%)]{bold color:%s stroke:"%s"}',
             current, required,
             math.floor(percent*100),
