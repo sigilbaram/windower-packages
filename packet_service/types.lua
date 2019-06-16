@@ -1723,14 +1723,9 @@ types.incoming[0x063] = multiple({
         [0x02] = {
             limit_points    = {0x04, uint16},
             merit_points    = {0x06, uint8},
-            unknown_1       = {0x07, boolbit(uint8), offset=7}, -- Merit mode switch? Needs confirmation.
-            unknown_2       = {0x07, boolbit(uint8), offset=6}, -- Blue level (capped)? Needs confirmation.
-            unknown_3       = {0x07, boolbit(uint8), offset=5}, -- Merits unlocked? Needs confirmation.
-            unknown_4       = {0x07, boolbit(uint8), offset=4},
-            unknown_5       = {0x07, boolbit(uint8), offset=3},
-            unknown_6       = {0x07, boolbit(uint8), offset=2},
-            unknown_7       = {0x07, boolbit(uint8), offset=1},
-            unknown_8       = {0x07, boolbit(uint8), offset=0},
+            merit_switch    = {0x07, boolbit(uint8), offset=7},
+            level_capped    = {0x07, boolbit(uint8), offset=6},
+            merits_unlocked = {0x07, boolbit(uint8), offset=5}, -- Merits unlocked and/or limit points earnable? Needs confirmation from lower level characters.
             merit_points_max= {0x08, uint8},
         },
 

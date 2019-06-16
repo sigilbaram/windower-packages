@@ -17,7 +17,7 @@ local window_state = {
 
 ui.display(function()
     window_state = ui.window('expbar_window', window_state, function()
-        local do_merits = (player.merit_unknown_1 or player.merit_unknown_2) and player.merit_unknown_3
+        local do_merits = (player.merit_switch or player.level_capped) and player.merits_unlocked
         local color = 'khaki'
         local ui_color = ui.color.khaki
         local percent = 0

@@ -31,14 +31,9 @@ local data = server.new(structs.struct({
     exp_required        = {structs.int32},
     merit_points        = {structs.int32},
     merit_points_max    = {structs.int32},
-    merit_unknown_1     = {structs.bool},
-    merit_unknown_2     = {structs.bool},
-    merit_unknown_3     = {structs.bool},
-    merit_unknown_4     = {structs.bool},
-    merit_unknown_5     = {structs.bool},
-    merit_unknown_6     = {structs.bool},
-    merit_unknown_7     = {structs.bool},
-    merit_unknown_8     = {structs.bool},
+    merit_switch        = {structs.bool},
+    level_capped        = {structs.bool},
+    merits_unlocked     = {structs.bool},
     limit_points        = {structs.int32},
     movement_speed      = {structs.double},
     animation_speed     = {structs.double},
@@ -182,14 +177,9 @@ packets.incoming:register_init({
         data.limit_points = p.limit_points
         data.merit_points = p.merit_points
         data.merit_points_max = p.merit_points_max
-        data.merit_unknown_1 = p.unknown_1
-        data.merit_unknown_2 = p.unknown_2
-        data.merit_unknown_3 = p.unknown_3
-        data.merit_unknown_4 = p.unknown_4
-        data.merit_unknown_5 = p.unknown_5
-        data.merit_unknown_6 = p.unknown_6
-        data.merit_unknown_7 = p.unknown_7
-        data.merit_unknown_8 = p.unknown_8
+        data.merit_switch = p.merit_switch
+        data.level_capped = p.level_capped
+        data.merits_unlocked = p.merits_unlocked
     end,
 
     [{0x0DF}] = function(p)
